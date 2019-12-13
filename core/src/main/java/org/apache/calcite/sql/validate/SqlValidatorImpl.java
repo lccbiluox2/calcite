@@ -642,10 +642,14 @@ public class SqlValidatorImpl implements SqlValidatorWithHints {
   }
 
   public SqlNode validate(SqlNode topNode) {
+    // root 对应的 Scope
     SqlValidatorScope scope = new EmptyScope(this);
     scope = new CatalogScope(scope, ImmutableList.of("CATALOG"));
+    // 语法检查
     final SqlNode topNode2 = validateScopedExpression(topNode, scope);
+    // 节点的类型
     final RelDataType type = getValidatedNodeType(topNode2);
+    // 取消编译器告警-没用的代码
     Util.discard(type);
     return topNode2;
   }
