@@ -641,6 +641,7 @@ public class SqlValidatorImpl implements SqlValidatorWithHints {
     return false;
   }
 
+  @Override
   public SqlNode validate(SqlNode topNode) {
     // root 对应的 Scope
     SqlValidatorScope scope = new EmptyScope(this);
